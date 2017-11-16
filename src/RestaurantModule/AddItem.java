@@ -1,11 +1,13 @@
 package RestaurantModule;
 
+import java.awt.event.KeyEvent;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JOptionPane;
 public class AddItem extends javax.swing.JFrame {
     
  private List<Item> itemList = new ArrayList<>();
@@ -54,6 +56,12 @@ public class AddItem extends javax.swing.JFrame {
         jLabel2.setText("Category     :");
 
         jLabel3.setText("Price            :");
+
+        jtfPrice.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jtfPriceKeyTyped(evt);
+            }
+        });
 
         jButton1.setText("Add");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -155,18 +163,29 @@ public class AddItem extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        String category = (String) jcbCategory.getSelectedItem();
-        String name = jtfName.getText();
-        double price = Double.parseDouble(jtfPrice.getText());
-    Item item = new Item(name,category,price);
-    itemList.add(item);
-    jtfID.setText("" + Item.getNextNumber());
-    // jtaResult.setText("Runner List: \n" + formatList(runnerList));
-    jtfName.setText("");
-    jtfPrice.setText("");
-    jtfName.grabFocus();// TODO add your handling code here:
-    jTextArea1.setText(formatitemList());
+        
+        if(!jtfName.getText().equals("") && !jtfPrice.getText().equals("")){
+            String category = (String) jcbCategory.getSelectedItem();
+            String name = jtfName.getText();
+            double price = Double.parseDouble(jtfPrice.getText());
+            Item item = new Item(name,category,price);
+            itemList.add(item);
+            jtfID.setText("" + Item.getNextNumber());
+            jtfName.setText("");
+            jtfPrice.setText("");
+            jtfName.grabFocus();
+            jTextArea1.setText(formatitemList());
+        }
+        else
+            JOptionPane.showMessageDialog(null,"All text Fields cannot be empty!");
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jtfPriceKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfPriceKeyTyped
+  char c = evt.getKeyChar();
+        if (!(Character.isDigit(c) || (c == KeyEvent.VK_BACK_SPACE) || c == KeyEvent.VK_DELETE)) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_jtfPriceKeyTyped
     
     public String formatitemList() {
          String outputStr = "No     Item Name         Category         Price              \n";

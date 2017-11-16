@@ -147,6 +147,9 @@
     <Component class="javax.swing.JTextField" name="jtfName">
     </Component>
     <Component class="javax.swing.JTextField" name="jtfPrice">
+      <Events>
+        <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jtfPriceKeyTyped"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="jButton1">
       <Properties>
