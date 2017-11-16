@@ -1,4 +1,4 @@
-package javaapplication11;
+package RestaurantModule;
 
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
