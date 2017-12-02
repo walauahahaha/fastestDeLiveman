@@ -1,5 +1,6 @@
 package RestaurantModule;
 
+import java.awt.Component;
 import java.awt.event.KeyEvent;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -38,9 +39,11 @@ public class AddItem extends javax.swing.JFrame {
         jButton4 = new javax.swing.JButton();
         jtfID = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
         jcbCategory = new javax.swing.JComboBox<>();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTextPane1 = new javax.swing.JTextPane();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTextPane2 = new javax.swing.JTextPane();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -81,11 +84,11 @@ public class AddItem extends javax.swing.JFrame {
 
         jLabel4.setText("Food ID       :");
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
-
         jcbCategory.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Food\t", "Beverage", " ", " " }));
+
+        jScrollPane2.setViewportView(jTextPane1);
+
+        jScrollPane1.setViewportView(jTextPane2);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -126,15 +129,20 @@ public class AddItem extends javax.swing.JFrame {
                             .addComponent(jtfID)
                             .addComponent(jtfName, javax.swing.GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE))))
                 .addContainerGap(274, Short.MAX_VALUE))
-            .addComponent(jScrollPane1)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 412, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 336, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(33, 33, 33)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jtfID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4))
@@ -174,7 +182,8 @@ public class AddItem extends javax.swing.JFrame {
             jtfName.setText("");
             jtfPrice.setText("");
             jtfName.grabFocus();
-            jTextArea1.setText(formatitemList());
+            jTextPane1.setText(formatitemList());
+            
         }
         else
             JOptionPane.showMessageDialog(null,"All text Fields cannot be empty!");
@@ -188,7 +197,7 @@ public class AddItem extends javax.swing.JFrame {
     }//GEN-LAST:event_jtfPriceKeyTyped
     
     public String formatitemList() {
-         String outputStr = "No     Item Name         Category         Price              \n";
+         String outputStr = "No     Item Name     Price              \n";
          for (int i = 0; i < itemList.size(); ++i) {
          outputStr += (i + 1) + ". " + itemList.get(i);
     }
@@ -240,8 +249,10 @@ public class AddItem extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextField jTextField3;
+    private javax.swing.JTextPane jTextPane1;
+    private javax.swing.JTextPane jTextPane2;
     private javax.swing.JComboBox<String> jcbCategory;
     private javax.swing.JTextField jtfID;
     private javax.swing.JTextField jtfName;

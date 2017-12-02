@@ -96,7 +96,7 @@ public class Item implements Serializable {
       
   @Override
   public String toString() {
-    return String.format("      %-20s  %10s     %.2f\n", itemName , itemCategory, itemPrice);
+    return String.format("%-10s %.2f\n", itemName , itemPrice);
   }
   
   
